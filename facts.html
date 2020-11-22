@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names data</title>
+    <script src="handlebars-v4.7.6.js"></script>
+    <script id="info-template" type="text/x-handlbars-template">
+    <h1>Info about {{name}}</h1>
+    <p>Age is {{age}} and occupation is {{occupation}}</p>
+    </script>
+</head>
+<body>
+    <div id="info">
+
+    </div>
+    <a href="index.html">Back to homepage</a>
+    <script>
+        const rawData=document.getElementById("info-template").innerHTML;
+        const compiledData=Handlebars.compile(rawData);
+        const data=JSON.parse(localStorage["data"]);
+        const page=compiledData(data);
+        const info=document.getElementById("info").innerHTML+=page;
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Names</title>
+    <script src="handlebars-v4.7.6.js"></script>
+    <script id="nametemplate" type="text/x-handlebars-template">
+        <div >
+            <h1>Names</h1>
+            {{#each data}}
+            <li><a data-info ="{{@index}}" href="facts.html#{{@index}}">    {{this.name}}</a></li>
+            {{/each}}
+        </div>
+    </script>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script>
+        const data=[
+            {name:"John",age:50,occupation:"Plumber"},
+            {name:"Anne",age:30,occupation:"House wife"},
+            {name:"Alex",age:20,occupation:"Student"},
+            {name:"Alice",age:50,occupation:"Teacher"}
+        ];
+        const nameData=document.getElementById("nametemplate").innerHTML;
+        const template=Handlebars.compile(nameData);
+        const page=template({data});
+        const container=document.getElementById("game-container");
+        container.innerHTML+=page;
+        window.addEventListener("click",handleClicks);
+        function handleClicks(e){
+            const target=e.target;
+            if(target.tagName==="A"){
+                const i=target.getAttribute("data-info");
+                const itemData=JSON.stringify((data[i]));
+                localStorage["data"]=itemData;
+                
+            }
+        }
+    </script>
+</body>
+</html>
