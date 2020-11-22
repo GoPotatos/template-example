@@ -15,7 +15,7 @@
     </script>
 </head>
 <body>
-    <div id="game-container"></div>
+    <div id="name-container"></div>
     <script>
         const data=[
             {name:"John",age:50,occupation:"Plumber"},
@@ -26,7 +26,7 @@
         const nameData=document.getElementById("nametemplate").innerHTML;
         const template=Handlebars.compile(nameData);
         const page=template({data});
-        const container=document.getElementById("game-container");
+        const container=document.getElementById("name-container");
         container.innerHTML+=page;
         window.addEventListener("click",handleClicks);
         function handleClicks(e){
